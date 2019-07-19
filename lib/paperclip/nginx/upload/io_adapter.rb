@@ -67,7 +67,7 @@ module Paperclip
           if @options[:move_tempfile] == "move"
             FileUtils.mv(@target[:tmp_path], destination.path)
           elsif @options[:move_tempfile] == "link"
-            FileUtils.ln(@target[:tmp_path], destination.path)
+            FileUtils.ln(@target[:tmp_path], destination.path, force: true)
           else
             FileUtils.cp(@target[:tmp_path], destination.path)
           end
