@@ -64,8 +64,10 @@ module Paperclip
         end
 
         def copy_or_move(source_path, destination_path)
-          if @options[:move_tempfile]
+          if @options[:move_tempfile] == "move"
             FileUtils.mv(@target[:tmp_path], destination.path)
+          elsif @options[:move_tempfile] == "link"
+            FileUtils.ln(@target[:tmp_path], destination.path)
           else
             FileUtils.cp(@target[:tmp_path], destination.path)
           end
